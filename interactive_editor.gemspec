@@ -35,7 +35,11 @@ Gem::Specification.new do |s|
   ## THE MANIFEST COMMENTS, they are used as delimiters by the task.
   # = MANIFEST =
   s.files = %w[
-
+    LICENSE
+    README.md
+    Rakefile
+    interactive_editor.gemspec
+    lib/interactive_editor.rb
   ]
   # = MANIFEST =
 
