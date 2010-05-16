@@ -5,7 +5,6 @@
 require 'irb'
 require 'fileutils'
 require 'tempfile'
-require 'spoon'
 
 class InteractiveEditor
   VERSION = '0.0.1'
@@ -47,6 +46,7 @@ class InteractiveEditor
   module Exec
     module Java
       def system(file, *args)
+        require 'spoon'
         Process.waitpid(Spoon.spawnp(file, *args))
       rescue Errno::ECHILD => e
         raise "error exec'ing #{file}: #{e}"
