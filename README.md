@@ -17,6 +17,7 @@ Then, from within irb:
     $ irb
     > vi
     > vi 'filename.rb'
+    > [emacs|vim|nano|mate] ...
 
 ## Credits
 
