@@ -70,6 +70,7 @@ task :release => :build do
   sh "gem push pkg/#{name}-#{version}.gem"
 end
 
+desc "Builds the gem"
 task :build => :gemspec do
   sh "mkdir -p pkg"
   sh "gem build #{gemspec_file}"
