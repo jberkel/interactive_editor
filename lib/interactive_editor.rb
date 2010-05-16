@@ -5,6 +5,7 @@
 require 'irb'
 require 'fileutils'
 require 'tempfile'
+require 'spoon'
 
 class InteractiveEditor
   VERSION = '0.0.1'
@@ -33,30 +34,27 @@ class InteractiveEditor
   end
 
   def self.edit(editor, file=nil)
-    #idea serialise last file to disk, for recovery
-    unless IRB.conf[:interactive_editors] && IRB.conf[:interactive_editors][editor]
-      IRB.conf[:interactive_editors] ||= {}
-      IRB.conf[:interactive_editors][editor] = InteractiveEditor.new(editor)
-    end
-    IRB.conf[:interactive_editors][editor].edit(file)
+    #maybe serialise last file to disk, for recovery
+    (IRB.conf[:interactive_editors] ||=
+      Hash.new { |h,k| h[k] = InteractiveEditor.new(k) })[editor].edit(file)
   end
 
   module Exec
-    extend self
-
-    if RUBY_PLATFORM =~ /java/
-      #http://github.com/headius/spoon
-      require 'rubygems'
-      require 'spoon'
-
-      def system(*args)
-        Process.waitpid(Spoon.spawnp(*args))
-      end
-    else
+    module Java
       def system(file, *args)
-        Kernel::system(file, *args)
+        Process.waitpid(Spoon.spawnp(file, *args))
+      rescue Errno::ECHILD => e
+        raise "error exec'ing #{file}: #{e}"
       end
     end
+
+    module MRI
+      def system(file, *args)
+        Kernel::system(file, *args) or raise "error exec'ing #{file}: #{$?}"
+      end
+    end
+
+    extend RUBY_PLATFORM =~ /java/ ? Java : MRI
   end
 
   module Editors
