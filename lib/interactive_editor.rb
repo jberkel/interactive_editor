@@ -24,7 +24,12 @@ class InteractiveEditor
        (@file && File.exist?(@file.path)) ? @file : Tempfile.new(["irb_tempfile", ".rb"])
     end
     mtime = File.stat(@file.path).mtime
-    Exec.system(@editor, @file.path)
+
+    if (args = @editor.split(/\s+/)).size > 1
+      Exec.system(args[0], *args[1..-1], @file.path)
+    else
+      Exec.system(@editor, @file.path)
+    end
 
     execute if mtime < File.stat(@file.path).mtime
   end
