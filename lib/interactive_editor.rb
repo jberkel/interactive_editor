@@ -26,7 +26,7 @@ class InteractiveEditor
     mtime = File.stat(@file.path).mtime
 
     if (args = @editor.split(/\s+/)).size > 1
-      Exec.system(args[0], *args[1..-1], @file.path)
+      Exec.system(args[0], *(args[1..-1] << @file.path))
     else
       Exec.system(@editor, @file.path)
     end
@@ -77,5 +77,4 @@ class InteractiveEditor
   end
 end
 
-Object.send(:include, InteractiveEditor::Editors)
-
+include InteractiveEditor::Editors
