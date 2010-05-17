@@ -55,7 +55,7 @@ class InteractiveEditor
 
     module MRI
       def system(file, *args)
-        Kernel::system(file, *args) or raise "error exec'ing #{file}: #{$?}"
+        Kernel::system(file, *args) #or raise "error exec'ing #{file}: #{$?}"
       end
     end
 
