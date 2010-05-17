@@ -1,7 +1,7 @@
 
 # Interactive editor
 
-cf. my blog post: [Integrating vim and irb](http://zegoggl.es/2009/04/integrating-vim-and-irb.html).
+cf. my (slightly outdated) blog post: [Integrating vim and irb](http://zegoggl.es/2009/04/integrating-vim-and-irb.html) and [vimcasts #20: Running Vim within IRB](http://vimcasts.org/e/20).
 
 ## Usage
 
