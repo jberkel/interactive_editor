@@ -74,6 +74,14 @@ class InteractiveEditor
        InteractiveEditor.edit(v || k, *args)
       end
     end
+
+    def ed(*args)
+      if ENV['EDITOR'].to_s.size > 0
+        InteractiveEditor.edit(ENV['EDITOR'], *args)
+      else
+        raise "You need to set the EDITOR environment variable first"
+      end
+    end
   end
 end
 

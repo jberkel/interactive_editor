@@ -15,9 +15,11 @@ Put the following in your .irbrc:
 Then, from within irb:
 
     $ irb
-    > vi
-    > vi 'filename.rb'
-    > [emacs|vim|nano|mate] ...
+    > vi                    # (use vi w/ temp file)
+    > vi 'filename.rb'      # (open filename.rb in vi)
+    > ed                    # (use EDITOR env variable)
+    > [emacs|vim|nano|mate] # (other editors)
+
 
 To try it out without installing the gem:
 
