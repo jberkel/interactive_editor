@@ -34,7 +34,7 @@ class InteractiveEditor
   end
 
   def execute
-    Object.class_eval(IO.read(@file.path))
+    eval(IO.read(@file.path), TOPLEVEL_BINDING)
   end
 
   def self.edit(editor, file=nil)
