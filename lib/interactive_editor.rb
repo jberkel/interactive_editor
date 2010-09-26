@@ -7,7 +7,7 @@ require 'fileutils'
 require 'tempfile'
 
 class InteractiveEditor
-  VERSION = '0.0.4'
+  VERSION = '0.0.5'
 
   attr_accessor :editor
 
