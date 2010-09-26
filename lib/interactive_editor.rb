@@ -68,7 +68,8 @@ class InteractiveEditor
       :vim   => nil,
       :emacs => nil,
       :nano  => nil,
-      :mate  => 'mate -w'
+      :mate  => 'mate -w',
+      :mvim  => 'mvim -g -f'
     }.each do |k,v|
       define_method(k) do |*args|
        InteractiveEditor.edit(v || k, *args)
