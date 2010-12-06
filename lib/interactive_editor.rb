@@ -5,6 +5,7 @@
 require 'irb'
 require 'fileutils'
 require 'tempfile'
+require 'shellwords'
 
 class InteractiveEditor
   VERSION = '0.0.5'
@@ -24,11 +25,9 @@ class InteractiveEditor
     end
     mtime = File.stat(@file.path).mtime
 
-    if (args = @editor.split(/\s+/)).size > 1
-      Exec.system(args[0], *(args[1..-1] << @file.path))
-    else
-      Exec.system(@editor, @file.path)
-    end
+    args = Shellwords.shellwords(@editor) #parse @editor as arguments could be complexe
+    args << @file.path
+    Exec.system(*args) 
 
     execute if mtime < File.stat(@file.path).mtime
   end
@@ -69,7 +68,7 @@ class InteractiveEditor
       :emacs => nil,
       :nano  => nil,
       :mate  => 'mate -w',
-      :mvim  => 'mvim -g -f'
+      :mvim  => 'mvim -g -f -c "au VimLeave * !open -a Terminal"'
     }.each do |k,v|
       define_method(k) do |*args|
        InteractiveEditor.edit(v || k, *args)
