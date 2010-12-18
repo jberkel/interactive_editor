@@ -14,7 +14,7 @@ Put the following in your .irbrc:
 
 Then, from within irb:
 
-    $ irb
+    $ irb                        # or ripl
     > vi                         # (use vi w/ temp file)
     > vi 'filename.rb'           # (open filename.rb in vi)
     > ed                         # (use EDITOR env variable)
@@ -27,6 +27,10 @@ To try it out without installing the gem:
     $ cd interactive_editor
     $ rake console
 
+interactive_editor also works with the IRB alternative [ripl][].
+
 ## Credits
 
 Giles Bowkett, Greg Brown, and several audience members from Giles' Ruby East presentation: [Use vi or any text editor from within IRB](http://gilesbowkett.blogspot.com/2007/10/use-vi-or-any-text-editor-from-within.html).
+
+[ripl]: https://github.com/cldwalker/ripl
