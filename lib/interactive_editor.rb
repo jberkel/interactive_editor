@@ -25,7 +25,7 @@ class InteractiveEditor
     end
     mtime = File.stat(@file.path).mtime
 
-    args = Shellwords.shellwords(@editor) #parse @editor as arguments could be complexe
+    args = Shellwords.shellwords(@editor) #parse @editor as arguments could be complex
     args << @file.path
     Exec.system(*args) 
 
@@ -68,7 +68,11 @@ class InteractiveEditor
       :emacs => nil,
       :nano  => nil,
       :mate  => 'mate -w',
-      :mvim  => 'mvim -g -f -c "au VimLeave * !open -a Terminal"'
+      :mvim  => 'mvim -g -f' + case ENV['TERM_PROGRAM']
+        when 'iTerm.app' then ' -c "au VimLeave * !open -a iTerm"' #on close refocus on iTerm
+        when 'Apple_Terminal' then ' -c "au VimLeave * !open -a Terminal"' #on close refocus on Terminal
+        else '' #don't do tricky things if we don't know the Term
+      end
     }.each do |k,v|
       define_method(k) do |*args|
        InteractiveEditor.edit(v || k, *args)
