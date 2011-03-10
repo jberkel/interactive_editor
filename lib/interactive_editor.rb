@@ -6,6 +6,7 @@ require 'irb'
 require 'fileutils'
 require 'tempfile'
 require 'shellwords'
+require 'yaml'
 
 class InteractiveEditor
   VERSION = '0.0.6'
@@ -16,30 +17,47 @@ class InteractiveEditor
     @editor = editor.to_s
   end
 
-  def edit(file=nil)
-    @file = if file
-       FileUtils.touch(file) unless File.exist?(file)
-       File.new(file)
+  def edit(object, file=nil)
+    object = object.instance_of?(Object) ? nil : object
+
+    current_file = if file
+      FileUtils.touch(file) unless File.exist?(file)
+      File.new(file)
+    else
+      if @file && File.exist?(@file.path) && !object
+        @file
       else
-       (@file && File.exist?(@file.path)) ? @file : Tempfile.new(["irb_tempfile", ".rb"])
+        Tempfile.new( object ? ["yobj_tempfile", ".yml"] : ["irb_tempfile", ".rb"] )
+      end
     end
-    mtime = File.stat(@file.path).mtime
+
+    if object
+      File.open( current_file, 'w' ) { |f| f << object.to_yaml }
+    else
+      @file = current_file
+      mtime = File.stat(@file.path).mtime
+    end
 
     args = Shellwords.shellwords(@editor) #parse @editor as arguments could be complexe
-    args << @file.path
-    Exec.system(*args) 
+    args << current_file.path
+    Exec.system(*args)
 
-    execute if mtime < File.stat(@file.path).mtime
+    if object
+      return object unless File.exists?(current_file)
+      YAML::load( File.open(current_file) )
+    elsif mtime < File.stat(@file.path).mtime
+      execute
+    end
   end
 
   def execute
     eval(IO.read(@file.path), TOPLEVEL_BINDING)
   end
 
-  def self.edit(editor, file=nil)
+  def self.edit(editor, self_, file=nil)
     #maybe serialise last file to disk, for recovery
     (IRB.conf[:interactive_editors] ||=
-      Hash.new { |h,k| h[k] = InteractiveEditor.new(k) })[editor].edit(file)
+      Hash.new { |h,k| h[k] = InteractiveEditor.new(k) })[editor].edit(self_, file)
   end
 
   module Exec
@@ -71,13 +89,13 @@ class InteractiveEditor
       :mvim  => 'mvim -g -f -c "au VimLeave * !open -a Terminal"'
     }.each do |k,v|
       define_method(k) do |*args|
-       InteractiveEditor.edit(v || k, *args)
+        InteractiveEditor.edit(v || k, self, *args)
       end
     end
 
     def ed(*args)
       if ENV['EDITOR'].to_s.size > 0
-        InteractiveEditor.edit(ENV['EDITOR'], *args)
+        InteractiveEditor.edit(ENV['EDITOR'], self, *args)
       else
         raise "You need to set the EDITOR environment variable first"
       end
