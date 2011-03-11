@@ -18,7 +18,7 @@ class InteractiveEditor
   end
 
   def edit(object, file=nil)
-    object = object.instance_of?(Object) ? nil : object
+    object = object == TOPLEVEL_BINDING.eval('self') ? nil : object
 
     current_file = if file
       FileUtils.touch(file) unless File.exist?(file)
