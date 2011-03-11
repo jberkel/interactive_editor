@@ -20,7 +20,7 @@ Then, from within irb:
     > ed                         # (use EDITOR env variable)
     > [emacs|vim|mvim|nano|mate] # (other editors)
 
-Bonus: editing objects on the fly (inspired by _why's object aorta)
+Bonus: editing of objects on the fly (inspired by _why's [object aorta][])
 
     $ irb
     > { 'chunky' => 'bacon' }.vi
@@ -44,3 +44,4 @@ With contributions from:
   * [TJ Singleton](https://github.com/tjsingleton)
 
 [ripl]: https://github.com/cldwalker/ripl
+[object aorta]: http://rubyforge.org/snippet/detail.php?type=snippet&id=22
