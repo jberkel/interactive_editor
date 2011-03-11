@@ -20,6 +20,10 @@ Then, from within irb:
     > ed                         # (use EDITOR env variable)
     > [emacs|vim|mvim|nano|mate] # (other editors)
 
+Bonus: editing objects on the fly (inspired by _why's object aorta)
+
+    $ irb
+    > { 'chunky' => 'bacon' }.vi
 
 To try it out without installing the gem:
 
