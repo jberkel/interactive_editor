@@ -37,4 +37,10 @@ interactive_editor also works with the IRB alternative [ripl][].
 
 Giles Bowkett, Greg Brown, and several audience members from Giles' Ruby East presentation: [Use vi or any text editor from within IRB](http://gilesbowkett.blogspot.com/2007/10/use-vi-or-any-text-editor-from-within.html).
 
+With contributions from:
+
+  * [Renaud Morvan](https://github.com/nel)
+  * [Jan Lenis](https://github.com/janlelis)
+  * [TJ Singleton](https://github.com/tjsingleton)
+
 [ripl]: https://github.com/cldwalker/ripl
