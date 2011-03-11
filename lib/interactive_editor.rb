@@ -40,11 +40,11 @@ class InteractiveEditor
 
     args = Shellwords.shellwords(@editor) #parse @editor as arguments could be complex
     args << current_file.path
+    current_file.close rescue nil
     Exec.system(*args)
 
     if object
-      return object unless File.exists?(current_file)
-      YAML::load( File.open(current_file) )
+      File.exists?(current_file.path) ? YAML.load_file(current_file.path) : object
     elsif mtime < File.stat(@file.path).mtime
       execute
     end
