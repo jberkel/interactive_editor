@@ -40,7 +40,7 @@ Giles Bowkett, Greg Brown, and several audience members from Giles' Ruby East pr
 With contributions from:
 
   * [Renaud Morvan](https://github.com/nel)
-  * [Jan Lenis](https://github.com/janlelis)
+  * [Jan Lelis](https://github.com/janlelis)
   * [TJ Singleton](https://github.com/tjsingleton)
 
 [ripl]: https://github.com/cldwalker/ripl
