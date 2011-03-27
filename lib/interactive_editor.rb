@@ -32,7 +32,7 @@ class InteractiveEditor
     end
 
     if object
-      File.open( current_file, 'w' ) { |f| f << object.to_yaml }
+      File.open( current_file.path, 'w' ) { |f| f << object.to_yaml }
     else
       @file = current_file
       mtime = File.stat(@file.path).mtime
