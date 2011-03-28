@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   ## If your rubyforge_project name is different, then edit it and comment out
   ## the sub! line in the Rakefile
   s.name              = 'interactive_editor'
-  s.version           = '0.0.7'
-  s.date              = '2011-03-11'
+  s.version           = '0.0.8'
+  s.date              = '2011-03-28'
   s.rubyforge_project = 'interactive_editor'
 
   ## Make sure your summary is short. The description may be as long
