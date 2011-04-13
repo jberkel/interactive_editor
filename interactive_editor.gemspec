@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   ## the sub! line in the Rakefile
   s.name              = 'interactive_editor'
   s.version           = '0.0.8'
-  s.date              = '2011-03-28'
+  s.date              = '2011-04-14'
   s.rubyforge_project = 'interactive_editor'
 
   ## Make sure your summary is short. The description may be as long
@@ -42,6 +42,8 @@ Gem::Specification.new do |s|
     lib/interactive_editor.rb
   ]
   # = MANIFEST =
+
+  s.license = 'MIT'
 
   ## Test files will be grabbed from the file list. Make sure the path glob
   ## matches what you actually use.
