@@ -9,7 +9,7 @@ require 'shellwords'
 require 'yaml'
 
 class InteractiveEditor
-  VERSION = '0.0.8'
+  VERSION = '0.0.9'
 
   attr_accessor :editor
 
