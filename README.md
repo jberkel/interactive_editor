@@ -35,7 +35,7 @@ To try it out without installing the gem:
     $ cd interactive_editor
     $ rake console
 
-interactive_editor also works with the IRB alternative [ripl][].
+interactive_editor also works with the IRB alternatives [ripl][] and [pry][].
 
 ## Credits
 
@@ -53,4 +53,5 @@ With contributions from:
 [vimcasts #20: Running Vim within IRB]: http://vimcasts.org/e/20
 [Use interactive_editor with irb for an inside-out Ruby IDE]: http://www.techrepublic.com/blog/programming-and-development/use-interactiveeditor-with-irb-for-an-inside-out-ruby-ide/4125
 [ripl]: https://github.com/cldwalker/ripl
+[pry]: https://github.com/pry/pry
 [object aorta]: http://rubyforge.org/snippet/detail.php?type=snippet&id=22
