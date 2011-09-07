@@ -10,6 +10,7 @@ require 'yaml'
 
 class InteractiveEditor
   VERSION = '0.0.9'
+  EDITORS = Hash.new { |h,k| h[k] = InteractiveEditor.new(k) }
 
   attr_accessor :editor
 
@@ -55,15 +56,15 @@ class InteractiveEditor
   end
 
   def self.edit(editor, self_, file=nil)
-    #maybe serialise last file to disk, for recovery
-    (editors_storage ||= Hash.new { |h,k| h[k] = InteractiveEditor.new(k) })[editor].edit(self_, file)
+    find_editor[editor].edit(self_, file)
   end
 
-  def self.editors_storage
+  def self.find_editor
+    #maybe serialise last file to disk, for recovery
     if defined?(Pry) and IRB == Pry
-      IRB.config.interactive_editors
+      IRB.config.interactive_editors ||= EDITORS
     else
-      IRB.conf[:interactive_editors]
+      IRB.conf[:interactive_editors] ||= EDITORS
     end
   end
 
