@@ -58,7 +58,7 @@ class InteractiveEditor
     #maybe serialise last file to disk, for recovery
     (editors_storage ||= Hash.new { |h,k| h[k] = InteractiveEditor.new(k) })[editor].edit(self_, file)
   end
-  
+
   def self.editors_storage
     if defined?(Pry) and IRB == Pry
       IRB.config.interactive_editors
