@@ -9,7 +9,7 @@ require 'shellwords'
 require 'yaml'
 
 class InteractiveEditor
-  VERSION = '0.0.9'
+  VERSION = '0.0.10'
   EDITORS = Hash.new { |h,k| h[k] = InteractiveEditor.new(k) }
 
   attr_accessor :editor
