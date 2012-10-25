@@ -94,6 +94,7 @@ class InteractiveEditor
       :emacs => nil,
       :nano  => nil,
       :mate  => 'mate -w',
+      :choc  => 'choc -w',
       :mvim  => 'mvim -g -f' + case ENV['TERM_PROGRAM']
         when 'iTerm.app';      ' -c "au VimLeave * !open -a iTerm"'
         when 'Apple_Terminal'; ' -c "au VimLeave * !open -a Terminal"'
