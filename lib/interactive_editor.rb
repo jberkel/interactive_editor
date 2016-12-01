@@ -91,6 +91,7 @@ class InteractiveEditor
     {
       :vi    => nil,
       :vim   => nil,
+      :nvim  => nil,
       :emacs => nil,
       :nano  => nil,
       :mate  => 'mate -w',
