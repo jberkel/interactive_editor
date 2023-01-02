@@ -45,7 +45,7 @@ class InteractiveEditor
     Exec.system(*args)
 
     if object
-      File.exists?(current_file.path) ? YAML.load_file(current_file.path) : object
+      File.exist?(current_file.path) ? YAML.load_file(current_file.path) : object
     elsif mtime < File.stat(@file.path).mtime
       execute
     end
