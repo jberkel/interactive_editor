@@ -54,4 +54,4 @@ With contributions from:
 [Use interactive_editor with irb for an inside-out Ruby IDE]: http://www.techrepublic.com/blog/programming-and-development/use-interactiveeditor-with-irb-for-an-inside-out-ruby-ide/4125
 [ripl]: https://github.com/cldwalker/ripl
 [pry]: https://github.com/pry/pry
-[object aorta]: http://rubyforge.org/snippet/detail.php?type=snippet&id=22
+[object aorta]: https://web.archive.org/web/20130831111942/http://rubyforge.org/snippet/detail.php?type=snippet&id=22
